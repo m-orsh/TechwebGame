@@ -19,16 +19,18 @@ body
 /* challenger/defender name, level, image & health bar wrapper */
 #challenger_ui, #defender_ui
 {
-	height:770px;
+	height:850px;
 	width:49%;
 	margin:auto;
 	display:inline-block;
-	/*border-style:solid; */ 
+	/*border-style:solid; */
 }
 
 #challenger_name_level, #defender_name_level
 {
 	margin-left:40px;
+	font-size:50px;
+	color:rgb(194, 194, 55);
 }
 
 #challenger_img, #defender_img
@@ -78,19 +80,17 @@ td
 
 
 /* Table classes */
-.stats_table
+table
 {
-	color:green;
+	color:rgb(197, 219, 78);
 	margin: 30px auto;
-	border-radius:5px;
-	border-style:solid;
 	background-color: rgba(0,0,0,0.6);
 
 }
 
 .table_header_row
 {
-
+	bacground-color: black;
 }
 
 .table_odd_row
@@ -100,6 +100,6 @@ td
 
 .table_even_row
 {
-	background-color: rgba(0,2,3,0.6);
+	background-color: black;
 
 }
