@@ -1,0 +1,53 @@
+body
+{
+	background-color:#b0c4de;
+}
+
+#main
+{
+	height:100%;
+	width:100%;
+	margin:0px;
+	border-style:solid;
+	border-width:0px;
+	padding:0px;
+}
+
+/* challenger/defender name, level, image & health bar wrapper */
+#challenger_ui, #defender_ui
+{
+	height:770px;
+	width:49%;
+	margin:auto;
+	display:inline-block;
+	/*border-style:solid; */
+}
+
+#challenger_name_level, #defender_name_level
+{
+	margin-left:40px;
+}
+
+#challenger_img, #defender_img
+{
+	margin-left:40px;
+}
+
+#challenger_health_wrapper, #defender_health_wrapper /* Allows for border that keeps track of where health bar was at 100% */
+{
+	height:40px;
+	width:700px;
+	margin-left:40px;
+	margin-top:50px;
+	padding:0px;
+	border-style:solid;
+}
+
+#challenger_health, #defender_health
+{
+	margin:0px;
+	padding:0px;
+	background-color:green;
+	height:100%;
+	width:100%;
+}
