@@ -1,6 +1,9 @@
 body
 {
-	background-color:#b0c4de;
+	background: url(http://support.radialpoint.com/client_images/Radialpoint/GameImages/BattleBackground.png);
+    background-size: 100% 100%;
+    /*background-repeat: no-repeat;*/
+    
 }
 
 #main
@@ -20,7 +23,7 @@ body
 	width:49%;
 	margin:auto;
 	display:inline-block;
-	/*border-style:solid; */
+	/*border-style:solid; */ 
 }
 
 #challenger_name_level, #defender_name_level
@@ -37,10 +40,12 @@ body
 {
 	height:40px;
 	width:700px;
+	background-color: #f1f1f1;
 	margin-left:40px;
 	margin-top:50px;
 	padding:0px;
 	border-style:solid;
+	border-radius:15px;
 }
 
 #challenger_health, #defender_health
@@ -49,5 +54,52 @@ body
 	padding:0px;
 	background-color:green;
 	height:100%;
-	width:100%;
+	width:80%;
+	border-radius:15px;
+}
+
+/* challenger stats wrapper */
+#challenger_stats_wrapper, #defender_stats_wrapper
+{
+	width:49%;
+	padding:0px;
+	height:400px;
+	/*border-style:solid;*/
+	display:inline-block;
+}
+
+/* Table defaults */
+td
+{
+	padding:20px;
+	padding-left:0px;
+	font-weight:bold;
+}
+
+
+/* Table classes */
+.stats_table
+{
+	color:green;
+	margin: 30px auto;
+	border-radius:5px;
+	border-style:solid;
+	background-color: rgba(0,0,0,0.6);
+
+}
+
+.table_header_row
+{
+
+}
+
+.table_odd_row
+{
+
+}
+
+.table_even_row
+{
+	background-color: rgba(0,2,3,0.6);
+
 }
