@@ -16,15 +16,6 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
 
 function battle() {
       console.log("Reading JSON");
-
-	function getParameterByName(name) {
-	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	        results = regex.exec(location.search);
-	    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-
-
      /* var json = $.ajax({
                                                 url: "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937",
                                                 type: 'get',
@@ -38,9 +29,16 @@ function battle() {
 	console.log(jsontest);
 	  $("#song").prop("volume", 0.5);
       var obj = $.parseJSON(jsontest);
+
+      //set challenger and defender name
+      $("#challenger_name_level").html(obj.challenger.gamer_name + " (" + obj.challenger.level + ")")
+      $("#defender_name_level").html(obj.defender.gamer_name + " (" + obj.defender.level + ")")
+
       //set total health
-      total_health_challenger = obj.challenger.health_remaining;
-      total_health_defender = obj.defender.health_remaining;
+      total_health_challenger = obj.challenger.health;
+      total_health_defender = obj.defender.health;
+
+
       console.log(obj);
       battleProc(obj);
     }
@@ -67,27 +65,32 @@ function battle() {
     function battleProc (jsonArray) {
        
        //startAnimation();
+
        var iter = 0;
-       //var result = battle.events;
        var result = jsonArray.events;
        console.log("RESULT: " + result.length);
        while(iter<result.length){
           call_setTimeout(iter,result);
           iter++;
        }
-       endAnimation(jsonArray);
+       endAnimation(jsonArray,iter);
     }
+
 
     function endAnimation(jsonArray) {
     	console.log("endAnimation()... " + jsonArray);
     	
        $("#song").trigger('pause');
+
     	agent = get_agent_id();
+    	console.log("iter"+iter)
     	if(agent == jsonArray["winner_id"]) {
-    		$("win_lose_flag").html("YOU WIN!");
+    		$("#win_lose_flag").css("color","white");
+    		setTimeout(function() {$("#win_lose_flag").html("YOU WIN!")},iter*1000 + 1000);
     	}
     	else {
-    		$("win_lose_flag").html("YOU LOSE!");
+    		$("#win_lose_flag").css("color","red");
+    		setTimeout(function() {$("#win_lose_flag").delay(iter*1000).html("YOU LOSE!")},iter*1000 + 1000);
     	}
     	
     }
@@ -108,7 +111,6 @@ function battle() {
         
       }
       else if(attacker=='defender'){
-      	console.log("gtfo2");
          var div=$("#defender_img");
           div.animate({
 		    left:'+=400px'
@@ -120,7 +122,6 @@ function battle() {
     }
 
     function healthAnimation(attacker,hit,health) {
-    	console.log("gtfo1");
     	if(attacker=='challenger') {
     		var remaining_health_percent = ((health/total_health_defender) * 100);
     		//attack number fade out
@@ -223,6 +224,7 @@ function battle() {
 		<!-- TOP PART -->
 		<audio id="song" src="battle.wav" controls="controls" autoplay style="display:none" loop volume="0.5"></audio>
 		<audio id="laser1" src="LaserGun02.mp3" controls="controls" style="display:none"></audio>
+
 		<!-- Winner/loser flag -->
 		<div id="win_lose_flag">
 		</div>
@@ -258,7 +260,7 @@ function battle() {
 			</div>
 		</div>
 
-		<!-- STATS PART -->
+		<!--
 		<div id="challenger_stats_wrapper">
 			<table class="stats_table">
 				<tr class="table_header_row">
@@ -314,7 +316,7 @@ function battle() {
 				</tr>
 			</table>
 		</div>
-
+	-->
 	</div>	
 </body>
 </html>
