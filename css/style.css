@@ -16,9 +16,23 @@ body
 	padding:0px;
 }
 
+#hidden_attack_number
+{
+	height:120px;
+	padding:0px;
+	width:300px;
+	position:absolute;
+	color:yellow;
+	font-size:130px;
+	text-align:center;
+	top:300px;
+	left:630px;
+}
+
 /* challenger/defender name, level, image & health bar wrapper */
 #challenger_ui, #defender_ui
 {
+	position:relative;
 	height:850px;
 	width:49%;
 	margin:auto;
@@ -33,14 +47,24 @@ body
 	color:rgb(194, 194, 55);
 }
 
-#challenger_img, #defender_img
+#challenger_img
 {
-	margin-left:40px;
+	left:70px;
 	position:absolute;
+}
+
+#defender_img
+{
+	left:40px;
+	position:absolute;
+
 }
 
 #challenger_health_wrapper, #defender_health_wrapper /* Allows for border that keeps track of where health bar was at 100% */
 {
+	position:absolute;
+	bottom: 50px;
+	z-index:-1;
 	height:40px;
 	width:700px;
 	background-color: #f1f1f1;
@@ -53,6 +77,7 @@ body
 
 #challenger_health, #defender_health
 {
+
 	margin:0px;
 	padding:0px;
 	background-color:green;

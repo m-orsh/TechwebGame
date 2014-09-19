@@ -38,9 +38,9 @@ console.log(jsontest);
        //startAnimation();
        var iter = 0;
        var result = jsonArray.results.results;
-       console.log(result);
+       console.log("RESULT: " + result.length);
        while(iter<result.length){
-          battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message); 
+          setTimeout(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message)},5000); 
           iter++;
        }
        //endAnimation();
@@ -48,23 +48,42 @@ console.log(jsontest);
     
     function battleAnimation(attacker,hit,health,message){
       if(attacker=='challenger'){
-      	console.log("gtfo1");
-      	var div=$("#challenger_img")
+      	
+      	var div=$("#challenger_img");
           div.animate({
-		    left:'600px'
-		  }, 200 );
-		  div.animate({
-		    left: '200px'
-		  }, 200 );
-          
+		    left:'-=400px'
+		  }, 200, "linear", div.animate({
+		  	left: '+=400px'
+		  },200,"linear"));
+		setTimeout(function() {healthAnimation(attacker,hit,health)},500); 
+        
       }
       else if(attacker=='defender'){
       	console.log("gtfo2");
-          $("#defender_img").animate({
-		    opacity: 0.4
-		  }, 1500 );
+         var div=$("#defender_img");
+          div.animate({
+		    left:'+=400px'
+		  }, 200, "linear", div.animate({
+		  	left: '-=400px'
+		  },200,"linear") ); 
       }
+    }
 
+    function healthAnimation(attacker,hit,health) {
+    	console.log("gtfo1");
+    	if(attacker=='challenger') {
+    		$("#hidden_attack_number").html("300");
+    		$("#hidden_attack_number").delay(400).animate({
+    			opacity:0,
+    			top: "-=100px"
+    		},700,"linear", function() {$("#hidden_attack_number").html("")});
+
+    		//setTimeout($("#hidden_attack_number").css({"top":"-=100px","opacity":"100"}),1000);
+
+    	}
+    	else {
+
+    	}
     }
 
 
@@ -132,6 +151,12 @@ console.log(jsontest);
 	<!--main-->
 	<div id="main">
 		<!-- TOP PART -->
+
+		<!-- hidden attack number div -->
+		<div id="hidden_attack_number">
+		</div>
+
+
 		<div id="challenger_ui">
 			<h2 id="challenger_name_level">
 				Challenger (85)
