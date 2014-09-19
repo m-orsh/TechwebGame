@@ -107,7 +107,7 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
     	else {
     		setTimeout(function() {$("#win_lose_img").attr("src","img/YouLose.png")},iter*1000 + 1700);
     	}
-      setTimeout(function(){$("#song").trigger('pause')},iter*1000+1700)
+      setTimeout(function(){$("#song").animate({volume: 0}, 1000)},iter*1000+1700)
     	
     }
 
