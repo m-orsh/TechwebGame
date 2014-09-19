@@ -15,7 +15,7 @@ function battle() {
       console.log("Reading JSON");
 
 
-      var json = jsontest;/*$.getJSON( "testbattle.json", function() {
+      var json = $.getJSON( "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937", function() {
           console.log( "success" );
 
         })
@@ -27,7 +27,7 @@ function battle() {
           })
           .always(function() {
             console.log( "complete" );
-          });*/
+          });
 console.log(jsontest);
       var obj = $.parseJSON(json);
       console.log(obj);
