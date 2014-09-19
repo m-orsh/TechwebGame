@@ -16,7 +16,20 @@ body
 	padding:0px;
 }
 
-#hidden_attack_number
+#hidden_attack_number_c
+{
+	height:120px;
+	padding:0px;
+	width:300px;
+	position:absolute;
+	color:red;
+	font-size:130px;
+	text-align:center;
+	top:300px;
+	left:630px;
+}
+
+#hidden_attack_number_d
 {
 	height:120px;
 	padding:0px;
@@ -40,7 +53,14 @@ body
 	/*border-style:solid; */
 }
 
-#challenger_name_level, #defender_name_level
+#challenger_name_level
+{
+	margin-left:40px;
+	font-size:50px;
+	color:red;
+}
+
+#defender_name_level
 {
 	margin-left:40px;
 	font-size:50px;

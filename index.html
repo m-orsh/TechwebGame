@@ -5,6 +5,9 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
+
+//CONSTANTS
+
           /* grab the JSON for battle processing*/
 var jsontest = '{"results": {"type": "flawless victory","challenger_xp": 100,"challenger_coins": 5,"defender_xp": 100,"defender_coins": 5,"results": [{"attacker": "challenger", "hit": 20, "health": 80, "message": ""},{"attacker": "defender", "hit": 15, "health": 85, "message": ""},{"attacker": "challenger", "hit": 10, "health": 70, "message": ""},{"attacker": "defender", "hit": 30, "health": 55, "message": "Critical hit"},{"attacker": "challenger", "hit": 0, "health": 70, "message": "Miss"},{"attacker": "defender", "hit": 10, "health": 45, "message": ""},{"attacker": "challenger", "hit": 30, "health": 40, "message": "Critical hit"},{"attacker": "defender", "hit": 0, "health": 45, "message": "Miss"},{"attacker": "challenger", "hit": 20, "health": 20, "message": ""},{"attacker": "defender", "hit": 30, "health": 15, "message": "Critical hit"},{"attacker": "challenger", "hit": 20, "health": 0, "message": ""},{"attacker": "defender", "hit": 15, "health": 0, "message": ""}]}}';
 
@@ -32,7 +35,7 @@ console.log(jsontest);
     }
 
     function call_setTimeout(iter,result) {
-    	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message)})(iter,result)},iter*2000); 
+    	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message)})(iter,result)},iter*1000); 
     }
 
     function battleProc (jsonArray) {
@@ -57,7 +60,7 @@ console.log(jsontest);
 		  }, 200, "linear", div.animate({
 		  	left: '+=400px'
 		  },200,"linear"));
-		setTimeout(function() {healthAnimation(attacker,hit,health)},500); 
+		setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
         
       }
       else if(attacker=='defender'){
@@ -68,6 +71,7 @@ console.log(jsontest);
 		  }, 200, "linear", div.animate({
 		  	left: '-=400px'
 		  },200,"linear") );
+		  setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
       }
     }
 
@@ -75,11 +79,11 @@ console.log(jsontest);
     	console.log("gtfo1");
     	if(attacker=='challenger') {
     		//attack number fade out
-    		$("#hidden_attack_number").html("300");
-    		$("#hidden_attack_number").delay(400).animate({
+    		$("#hidden_attack_number_c").html(hit);
+    		$("#hidden_attack_number_c").delay(200).animate({
     			opacity:0,
     			top: "-=100px"
-    		},700,"linear", function() {$("#hidden_attack_number").html("").css({"top":"300px","opacity":"1.0"})});
+    		},1000,"linear", function() {$("#hidden_attack_number_c").html("").css({"top":"300px","opacity":"1.0"})});
 
     		//health bar
     		$("#defender_hit_points").delay(400).animate({
@@ -88,7 +92,18 @@ console.log(jsontest);
     		},700,"linear", function() {$("#defender_hit_points").html("").css({"top":"300px","opacity":"1.0"})});
     	}
     	else {
+    		//attack number fade out
+    		$("#hidden_attack_number_d").html(hit);
+    		$("#hidden_attack_number_d").delay(200).animate({
+    			opacity:0,
+    			top: "-=100px"
+    		},1000,"linear", function() {$("#hidden_attack_number_d").html("").css({"top":"300px","opacity":"1.0"})});
 
+    		//health bar
+    		$("#challenger_hit_points").delay(400).animate({
+    			opacity:0,
+    			top: "-=100px"
+    		},700,"linear", function() {$("#challenger_hit_points").html("").css({"top":"300px","opacity":"1.0"})});
     	}
     }
 
@@ -159,7 +174,9 @@ console.log(jsontest);
 		<!-- TOP PART -->
 
 		<!-- hidden attack number div -->
-		<div id="hidden_attack_number">
+		<div id="hidden_attack_number_c">
+		</div>
+		<div id="hidden_attack_number_d">
 		</div>
 
 
