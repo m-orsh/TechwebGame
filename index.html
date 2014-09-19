@@ -14,35 +14,37 @@ var jsontest = '{"results": {"type": "flawless victory","challenger_xp": 100,"ch
 function battle() {
       console.log("Reading JSON");
 
+      function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
-      var json = $.getJSON( "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937", function() {
-          console.log( "success" );
 
-        })
-          .done(function() {
-            console.log( "second success" );
-          })
-          .fail(function() {
-            console.log( "error" );
-          })
-          .always(function() {
-            console.log( "complete" );
-          });
-console.log(jsontest);
-      var obj = $.parseJSON(json);
-      console.log(obj);
-      battleProc(obj);
+      var json = $.ajax({
+                                                url: "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937",
+                                                type: 'get',
+                                                dataType: 'json',
+                                                data: {},
+                                                success: function (battle) {
+                                                  battleProc(battle);
+                                                }
+                                                //error: error
+                                });
+      
     }
 
     function call_setTimeout(iter,result) {
     	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message)})(iter,result)},iter*1000); 
     }
 
-    function battleProc (jsonArray) {
+    function battleProc (battle) {
        
        //startAnimation();
        var iter = 0;
-       var result = jsonArray.results.results;
+       var result = battle.events;
+       //var result = ($.parseJSON(jsontest)).result.result;
        console.log("RESULT: " + result.length);
        while(iter<result.length){
           call_setTimeout(iter,result);
