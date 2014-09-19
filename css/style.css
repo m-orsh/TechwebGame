@@ -36,6 +36,7 @@ body
 #challenger_img, #defender_img
 {
 	margin-left:40px;
+	position:absolute;
 }
 
 #challenger_health_wrapper, #defender_health_wrapper /* Allows for border that keeps track of where health bar was at 100% */

@@ -4,7 +4,131 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
-<body>
+<script type="text/javascript">
+          /* grab the JSON for battle processing*/
+var jsontest = '{"results": {"type": "flawless victory","challenger_xp": 100,"challenger_coins": 5,"defender_xp": 100,"defender_coins": 5,"results": [{"attacker": "challenger", "hit": 20, "health": 80, "message": ""},{"attacker": "defender", "hit": 15, "health": 85, "message": ""},{"attacker": "challenger", "hit": 10, "health": 70, "message": ""},{"attacker": "defender", "hit": 30, "health": 55, "message": "Critical hit"},{"attacker": "challenger", "hit": 0, "health": 70, "message": "Miss"},{"attacker": "defender", "hit": 10, "health": 45, "message": ""},{"attacker": "challenger", "hit": 30, "health": 40, "message": "Critical hit"},{"attacker": "defender", "hit": 0, "health": 45, "message": "Miss"},{"attacker": "challenger", "hit": 20, "health": 20, "message": ""},{"attacker": "defender", "hit": 30, "health": 15, "message": "Critical hit"},{"attacker": "challenger", "hit": 20, "health": 0, "message": ""},{"attacker": "defender", "hit": 15, "health": 0, "message": ""}]}}';
+
+function battle() {
+      console.log("Reading JSON");
+
+
+      var json = jsontest;/*$.getJSON( "testbattle.json", function() {
+          console.log( "success" );
+
+        })
+          .done(function() {
+            console.log( "second success" );
+          })
+          .fail(function() {
+            console.log( "error" );
+          })
+          .always(function() {
+            console.log( "complete" );
+          });*/
+console.log(jsontest);
+      var obj = $.parseJSON(json);
+      console.log(obj);
+      battleProc(obj);
+    }
+
+
+
+    function battleProc (jsonArray) {
+       
+       //startAnimation();
+       var iter = 0;
+       var result = jsonArray.results.results;
+       console.log(result);
+       while(iter<result.length){
+          battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message); 
+          iter++;
+       }
+       //endAnimation();
+    }
+    
+    function battleAnimation(attacker,hit,health,message){
+      if(attacker=='challenger'){
+      	console.log("gtfo1");
+      	var div=$("#challenger_img")
+          div.animate({
+		    left:'600px'
+		  }, 200 );
+		  div.animate({
+		    left: '200px'
+		  }, 200 );
+          
+      }
+      else if(attacker=='defender'){
+      	console.log("gtfo2");
+          $("#defender_img").animate({
+		    opacity: 0.4
+		  }, 1500 );
+      }
+
+    }
+
+
+    // This is where we have all our controllers to handle events
+    /*function bindUIActions() {
+      //Projects Dropdown
+      $(projectDropdown).on('change', function(evt, params) {
+        console.log($(projectDropdown + ' option:selected').text());
+        uiModel.currentProject = $(projectDropdown + ' option:selected').text();
+        todoCollection.grabTodos(projectModel.getIdFromName(uiModel.currentProject).id);
+        //Should cause a change in todoCollection
+      });
+
+      //Add project
+      $(addProject).click(function() {
+        $.ajax({
+          url: "/widgets/pomo_task_manager/addProject.html",
+          dataType: "html",
+          success: function(data) {
+            $(project).html(data);
+            elementsControl.showThisSelector("project");
+            bindAddProjectActions();
+          }
+        });
+      });
+
+      $(submitAddProject).click(function() {
+          var projectName = $(inputProjectName).val();
+          var projectDesc = $(inputProjectDesc).val();
+
+          var request = gapi.client.request({
+            'path': 'calendar/v3/calendars',
+            'method': 'POST',
+            'body': {
+              'summary': "Project: " + projectName,
+              'description': projectDesc
+            }
+          });
+
+          var btn = $(this);
+          btn.button('loading');
+          request.execute(function(resp) {
+            btn.button('reset');
+            var name = $(inputProjectName).val()
+            uiModel.currentProject = name;
+            model.addCalendar(name, resp.id);
+            todoCollection.grabTodos(projectModel.getIdFromName(uiModel.currentProject).id);
+            elementsControl.showThisSelector("main");
+          });
+
+
+      });
+      
+    }*/
+
+    /*function submitResults () {
+      
+    }
+
+
+  });*/
+
+</script>
+<body onload="battle();">
 	<!--main-->
 	<div id="main">
 		<!-- TOP PART -->
