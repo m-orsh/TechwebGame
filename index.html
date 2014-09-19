@@ -44,7 +44,7 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
     }
  
     function call_setTimeout(iter,result) {
-                setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health_remaining, result[iter].message)})(iter,result)},iter*1000 + 500);
+                setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health_remaining, result[iter].message)})(iter,result)},iter*1000 + 1500);
  
     }
  
@@ -112,7 +112,7 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
 		  }, 200, "linear", div.animate({
 		  	left: '+=400px'
 		  },200,"linear"));
-		setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
+		setTimeout(function() {healthAnimation(attacker,hit,health,message)},300); 
         
       }
       else if(attacker=='defender'){
@@ -122,15 +122,15 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
 		  }, 200, "linear", div.animate({
 		  	left: '-=400px'
 		  },200,"linear") );
-		  setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
+		  setTimeout(function() {healthAnimation(attacker,hit,health,message)},300); 
       }
     }
 
-    function healthAnimation(attacker,hit,health) {
+    function healthAnimation(attacker,hit,health,message) {
     	if(attacker=='challenger') {
     		var remaining_health_percent = ((health/total_health_defender) * 100);
     		//attack number fade out
-    		$("#hidden_attack_number_c").html(hit);
+    		$("#hidden_attack_number_c").html(hit+"</br>"+message);
     		$("#hidden_attack_number_c").delay(200).animate({
     			opacity:0,
     			top: "-=100px"
@@ -149,7 +149,7 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
     	else {
     		var remaining_health_percent = ((health/total_health_challenger)*100);
     		//attack number fade out
-    		$("#hidden_attack_number_d").html(hit);
+    		$("#hidden_attack_number_d").html(hit+"</br>"+message);
     		$("#hidden_attack_number_d").delay(200).animate({
     			opacity:0,
     			top: "-=100px"
