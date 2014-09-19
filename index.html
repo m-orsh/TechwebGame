@@ -11,53 +11,61 @@ var total_health_challenger;
 var total_health_defender;
 
           /* grab the JSON for battle processing*/
-var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","badges":[{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/AHTChatLeader.png","id":1,"name":"AHTChatLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/FCRLeader.png","id":2,"name":"FCRLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/NPSLeader.png","id":3,"name":"NPSLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/F9ComplianceLeader.png","id":4,"name":"F9ComplianceLeader"}],"battles":[{"consumed":true,"date_created":"19 Sep 2014 14:39","id":1,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","opponent_gamer_name":"Zeus Dog","opponent_id":938,"opponent_name":"Brian Griffin","win":true},{"consumed":false,"date_created":"19 Sep 2014 15:32","id":2,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","opponent_gamer_name":"Zeus Dog","opponent_id":938,"opponent_name":"Brian Griffin","win":false}],"coins":100,"gamer_name":"Yellow Morpheus","health":186,"id":937,"level":10,"metrics":[{"attribute_name":"Hit Points","attribute_value":30,"badges_contribution":10,"base_value":20,"metric_name":"AHT Chat","metric_value":"7m 31"},{"attribute_name":"Magic Points","attribute_value":15,"badges_contribution":0,"base_value":15,"metric_name":"AHT Phone","metric_value":"13m 39"},{"attribute_name":"Strength","attribute_value":10,"badges_contribution":2,"base_value":8,"metric_name":"Reopen Rate (FCR)","metric_value":"96.5%"},{"attribute_name":"Magic Damage","attribute_value":18,"badges_contribution":0,"base_value":18,"metric_name":"Net Sales Conversion","metric_value":"47%"},{"attribute_name":"Armor","attribute_value":16,"badges_contribution":0,"base_value":16,"metric_name":"CSAT","metric_value":"86.8%"},{"attribute_name":"Weapon Damage","attribute_value":17,"badges_contribution":2,"base_value":15,"metric_name":"NPS","metric_value":"64"},{"attribute_name":"Speed","attribute_value":14,"badges_contribution":0,"base_value":14,"metric_name":"Sessions\/Hour","metric_value":"4.49"},{"attribute_name":"Intelligence","attribute_value":12,"badges_contribution":0,"base_value":12,"metric_name":"QA Score","metric_value":"87"},{"attribute_name":"Luck","attribute_value":6,"badges_contribution":1,"base_value":5,"metric_name":"F9ServiceDeliveryCompliance","metric_value":"87%"}],"xp":900},"challenger_coins":10,"challenger_xp":100,"defender":{"agent_name":null,"avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","badges":[{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/AHTPhoneLeader.png","id":5,"name":"AHTPhoneLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/CSATLeader.png","id":6,"name":"CSATLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/RevealRecommends.png","id":7,"name":"RevealRecommends"}],"battles":[{"consumed":false,"date_created":"19 Sep 2014 14:39","id":1,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","opponent_gamer_name":"Yellow Morpheus","opponent_id":937,"opponent_name":"Homer Simpson","win":false},{"consumed":false,"date_created":"19 Sep 2014 15:32","id":2,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","opponent_gamer_name":"Yellow Morpheus","opponent_id":937,"opponent_name":"Homer Simpson","win":true}],"coins":10,"gamer_name":"Zeus Dog","health":140,"id":938,"level":1,"metrics":[{"attribute_name":"Hit Points","attribute_value":17,"badges_contribution":0,"base_value":17,"metric_name":"AHT Chat","metric_value":"8m 11"},{"attribute_name":"Magic Points","attribute_value":21,"badges_contribution":2,"base_value":19,"metric_name":"AHT Phone","metric_value":"12m 59"},{"attribute_name":"Strength","attribute_value":19,"badges_contribution":0,"base_value":19,"metric_name":"Reopen Rate (FCR)","metric_value":"94.3%"},{"attribute_name":"Magic Damage","attribute_value":20,"badges_contribution":0,"base_value":20,"metric_name":"Net Sales Conversion","metric_value":"51%"},{"attribute_name":"Armor","attribute_value":16,"badges_contribution":2,"base_value":14,"metric_name":"CSAT","metric_value":"85.1%"},{"attribute_name":"Weapon Damage","attribute_value":15,"badges_contribution":0,"base_value":15,"metric_name":"NPS","metric_value":"66"},{"attribute_name":"Speed","attribute_value":13,"badges_contribution":0,"base_value":13,"metric_name":"Sessions\/Hour","metric_value":"4.13"},{"attribute_name":"Intelligence","attribute_value":8,"badges_contribution":0,"base_value":8,"metric_name":"QA Score","metric_value":"83"},{"attribute_name":"Luck","attribute_value":18,"badges_contribution":1,"base_value":17,"metric_name":"F9ServiceDeliveryCompliance","metric_value":"91%"}],"xp":0},"defender_coins":5,"defender_xp":50,"events":[{"agent_id":937,"attacker":"challenger","health_remaining":122,"hit":19,"id":1,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":121,"hit":20,"id":2,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":99,"hit":23,"id":3,"message":"Critical Hit"},{"agent_id":938,"attacker":"defender","health_remaining":99,"hit":22,"id":4,"message":"Critical Hit"},{"agent_id":937,"attacker":"challenger","health_remaining":82,"hit":17,"id":5,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":81,"hit":18,"id":6,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":61,"hit":21,"id":7,"message":"Critical Hit"},{"agent_id":938,"attacker":"defender","health_remaining":61,"hit":20,"id":8,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":40,"hit":21,"id":9,"message":"Critical Hit"},{"agent_id":938,"attacker":"defender","health_remaining":45,"hit":16,"id":10,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":21,"hit":19,"id":11,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":27,"hit":18,"id":12,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":2,"hit":19,"id":13,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":5,"hit":22,"id":14,"message":"Critical Hit"},{"agent_id":937,"attacker":"challenger","health_remaining":-15,"hit":17,"id":15,"message":""}],"id":1,"type":null,"winner_id":937}';
+var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","badges":[{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/AHTChatLeader.png","id":1,"name":"AHTChatLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/FCRLeader.png","id":2,"name":"FCRLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/NPSLeader.png","id":3,"name":"NPSLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/F9ComplianceLeader.png","id":4,"name":"F9ComplianceLeader"}],"battles":[{"consumed":true,"date_created":"19 Sep 2014 14:39","id":1,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","opponent_gamer_name":"Zeus Dog","opponent_id":938,"opponent_name":"Brian Griffin","win":true},{"consumed":false,"date_created":"19 Sep 2014 15:32","id":2,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","opponent_gamer_name":"Zeus Dog","opponent_id":938,"opponent_name":"Brian Griffin","win":false}],"coins":100,"gamer_name":"Yellow Morpheus","health":186,"id":937,"level":10,"metrics":[{"attribute_name":"Hit Points","attribute_value":30,"badges_contribution":10,"base_value":20,"metric_name":"AHT Chat","metric_value":"7m 31"},{"attribute_name":"Magic Points","attribute_value":15,"badges_contribution":0,"base_value":15,"metric_name":"AHT Phone","metric_value":"13m 39"},{"attribute_name":"Strength","attribute_value":10,"badges_contribution":2,"base_value":8,"metric_name":"Reopen Rate (FCR)","metric_value":"96.5%"},{"attribute_name":"Magic Damage","attribute_value":18,"badges_contribution":0,"base_value":18,"metric_name":"Net Sales Conversion","metric_value":"47%"},{"attribute_name":"Armor","attribute_value":16,"badges_contribution":0,"base_value":16,"metric_name":"CSAT","metric_value":"86.8%"},{"attribute_name":"Weapon Damage","attribute_value":17,"badges_contribution":2,"base_value":15,"metric_name":"NPS","metric_value":"64"},{"attribute_name":"Speed","attribute_value":14,"badges_contribution":0,"base_value":14,"metric_name":"Sessions\/Hour","metric_value":"4.49"},{"attribute_name":"Intelligence","attribute_value":12,"badges_contribution":0,"base_value":12,"metric_name":"QA Score","metric_value":"87"},{"attribute_name":"Luck","attribute_value":6,"badges_contribution":1,"base_value":5,"metric_name":"F9ServiceDeliveryCompliance","metric_value":"87%"}],"xp":900},"challenger_coins":10,"challenger_xp":100,"defender":{"agent_name":null,"avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent2002.png","badges":[{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/AHTPhoneLeader.png","id":5,"name":"AHTPhoneLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/CSATLeader.png","id":6,"name":"CSATLeader"},{"date_obtained":"19 Sep 2014 13:45","icon":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/RevealRecommends.png","id":7,"name":"RevealRecommends"}],"battles":[{"consumed":false,"date_created":"19 Sep 2014 14:39","id":1,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","opponent_gamer_name":"Yellow Morpheus","opponent_id":937,"opponent_name":"Homer Simpson","win":false},{"consumed":false,"date_created":"19 Sep 2014 15:32","id":2,"opponent_avatar":"http:\/\/support.radialpoint.com\/client_images\/Radialpoint\/GameImages\/Agent1001.png","opponent_gamer_name":"Yellow Morpheus","opponent_id":937,"opponent_name":"Homer Simpson","win":true}],"coins":10,"gamer_name":"Zeus Dog","health":140,"id":938,"level":1,"metrics":[{"attribute_name":"Hit Points","attribute_value":17,"badges_contribution":0,"base_value":17,"metric_name":"AHT Chat","metric_value":"8m 11"},{"attribute_name":"Magic Points","attribute_value":21,"badges_contribution":2,"base_value":19,"metric_name":"AHT Phone","metric_value":"12m 59"},{"attribute_name":"Strength","attribute_value":19,"badges_contribution":0,"base_value":19,"metric_name":"Reopen Rate (FCR)","metric_value":"94.3%"},{"attribute_name":"Magic Damage","attribute_value":20,"badges_contribution":0,"base_value":20,"metric_name":"Net Sales Conversion","metric_value":"51%"},{"attribute_name":"Armor","attribute_value":16,"badges_contribution":2,"base_value":14,"metric_name":"CSAT","metric_value":"85.1%"},{"attribute_name":"Weapon Damage","attribute_value":15,"badges_contribution":0,"base_value":15,"metric_name":"NPS","metric_value":"66"},{"attribute_name":"Speed","attribute_value":13,"badges_contribution":0,"base_value":13,"metric_name":"Sessions\/Hour","metric_value":"4.13"},{"attribute_name":"Intelligence","attribute_value":8,"badges_contribution":0,"base_value":8,"metric_name":"QA Score","metric_value":"83"},{"attribute_name":"Luck","attribute_value":18,"badges_contribution":1,"base_value":17,"metric_name":"F9ServiceDeliveryCompliance","metric_value":"91%"}],"xp":0},"defender_coins":5,"defender_xp":50,"events":[{"agent_id":937,"attacker":"challenger","health_remaining":122,"hit":19,"id":1,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":121,"hit":20,"id":2,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":99,"hit":23,"id":3,"message":"Critical Hit"},{"agent_id":938,"attacker":"defender","health_remaining":99,"hit":22,"id":4,"message":"Critical Hit"},{"agent_id":937,"attacker":"challenger","health_remaining":82,"hit":17,"id":5,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":81,"hit":18,"id":6,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":61,"hit":21,"id":7,"message":"Critical Hit"},{"agent_id":938,"attacker":"defender","health_remaining":61,"hit":20,"id":8,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":40,"hit":0,"id":9,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":45,"hit":16,"id":10,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":21,"hit":19,"id":11,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":27,"hit":18,"id":12,"message":""},{"agent_id":937,"attacker":"challenger","health_remaining":2,"hit":19,"id":13,"message":""},{"agent_id":938,"attacker":"defender","health_remaining":5,"hit":22,"id":14,"message":"Critical Hit"},{"agent_id":937,"attacker":"challenger","health_remaining":-15,"hit":17,"id":15,"message":""}],"id":1,"type":null,"winner_id":937}';
 
 
-function battle() {
+
+ function battle() {
       console.log("Reading JSON");
-     /* var json = $.ajax({
-                                                url: "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937",
+      /*var obj = $.ajax({
+                                                url: "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId="+ get_param("BattleId") +"&AgentId=" + get_param("AgentId"),
                                                 type: 'get',
                                                 dataType: 'json',
                                                 data: {},
                                                 success: function (battle) {
-                                                  battleProc(battle);
+                                                  handle_battle_result(battle);
                                                 }
                                                 //error: error
                                 });*/
-      var obj = $.parseJSON(jsontest);
-
-      //set challenger and defender name
-      $("#challenger_name_level").html(obj.challenger.gamer_name + " (" + obj.challenger.level + ")")
-      $("#defender_name_level").html(obj.defender.gamer_name + " (" + obj.defender.level + ")")
-
-      //set total health
-      total_health_challenger = obj.challenger.health;
-      total_health_defender = obj.defender.health;
-
-
-      console.log(obj);
-      battleProc(obj);
+      handle_battle_result($.parseJSON(jsontest));
     }
-
+ 
+    function handle_battle_result(battle) {
+      //set challenger and defender name
+      $("#challenger_name_level").html(battle.challenger.gamer_name + " (" + battle.challenger.level + ")")
+      $("#defender_name_level").html(battle.defender.gamer_name + " (" + battle.defender.level + ")")
+ 
+      //set total health
+      total_health_challenger = battle.challenger.health;
+      total_health_defender = battle.defender.health;
+ 
+ 
+      console.log(battle);
+      battleProc(battle);
+    }
+ 
     function call_setTimeout(iter,result) {
+
     	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health_remaining, result[iter].message)})(iter,result)},iter*1000 + 1300); 
 
     }
-
+ 
     function get_agent_id() {
-    	var agent, hash;
-	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-	    for(var i = 0; i < hashes.length; i++)
-	    {
-	        hash = hashes[i].split('=');
-	        if(hash[0] == "AgentId")
-	        {
-	        	return hash[1]
-	        }
-	    }
-	    return "Wrong url...";
+                    return get_param("AgentId");
+    }
+ 
+    function get_param(query_param) {
+      var agent, hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      for(var i = 0; i < hashes.length; i++)
+      {
+          hash = hashes[i].split('=');
+          if(hash[0] == query_param)
+          {
+            return hash[1]
+          }
+      }
+      return "Wrong url...";
     }
 
     function battleProc (jsonArray) {
@@ -94,16 +102,19 @@ function battle() {
     	console.log("iter"+iter)
     	if(agent == jsonArray["winner_id"]) {
     		setTimeout(function() {$("#win_lose_img").attr("src","img/YouWin.png")},iter*1000 + 1700);
+
     	}
     	else {
     		setTimeout(function() {$("#win_lose_img").attr("src","img/YouLose.png")},iter*1000 + 1700);
     	}
+      setTimeout(function(){$("#song").trigger('pause')},iter*1000+1700)
     	
     }
 
 
     
     function battleAnimation(attacker,hit,health,message){
+       $("#laser1").trigger('play');
       if(attacker=='challenger'){
       	
       	var div=$("#challenger_img");
@@ -112,7 +123,7 @@ function battle() {
 		  }, 200, "linear", div.animate({
 		  	left: '+=400px'
 		  },200,"linear"));
-		setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
+		setTimeout(function() {healthAnimation(attacker,hit,health,message)},300); 
         
       }
       else if(attacker=='defender'){
@@ -122,15 +133,23 @@ function battle() {
 		  }, 200, "linear", div.animate({
 		  	left: '-=400px'
 		  },200,"linear") );
-		  setTimeout(function() {healthAnimation(attacker,hit,health)},300); 
+		  setTimeout(function() {healthAnimation(attacker,hit,health,message)},300); 
       }
     }
 
-    function healthAnimation(attacker,hit,health) {
+    function healthAnimation(attacker,hit,health,message) {
     	if(attacker=='challenger') {
     		var remaining_health_percent = ((health/total_health_defender) * 100);
     		//attack number fade out
-    		$("#hidden_attack_number_c").html(hit);
+    		if(message == "Critical Hit") {
+    			$("#hidden_attack_number_c").html(hit+"</br>"+"<img src='img/CriticalHit.png'>");
+    		}
+    		else if(hit == 0) {
+    			$("#hidden_attack_number_c").html(hit+"</br>"+"<img src='img/Miss.png'>");
+    		}
+    		else {
+    			$("#hidden_attack_number_c").html(hit+"</br>"+message);
+    		}
     		$("#hidden_attack_number_c").delay(200).animate({
     			opacity:0,
     			top: "-=100px"
@@ -149,7 +168,15 @@ function battle() {
     	else {
     		var remaining_health_percent = ((health/total_health_challenger)*100);
     		//attack number fade out
-    		$("#hidden_attack_number_d").html(hit);
+    		if(message == "Critical Hit") {
+    			$("#hidden_attack_number_d").html(hit+"</br>"+"<img src='img/CriticalHit.png'>");
+    		}
+    		else if(hit == 0) {
+    			$("#hidden_attack_number_d").html(hit+"</br>"+"<img src='img/Miss.png'>");
+    		}
+    		else {
+    			$("#hidden_attack_number_d").html(hit+"</br>"+message);
+    		}
     		$("#hidden_attack_number_d").delay(200).animate({
     			opacity:0,
     			top: "-=100px"
@@ -227,7 +254,9 @@ function battle() {
 	<!--main-->
 	<div id="main">
 		<!-- TOP PART -->
-		<!--<audio src="battle.wav" controls="controls"></audio>-->
+		<audio id="song" src="battle.wav" controls="controls" autoplay style="display:none" loop volume="0.5"></audio>
+		<audio id="laser1" src="LaserGun02.mp3" controls="controls" style="display:none"></audio>
+
 		<!-- Winner/loser flag -->
 		<div id="win_lose_flag">
 			<img id="win_lose_img">
@@ -242,7 +271,6 @@ function battle() {
 
 		<div id="challenger_ui">
 			<h2 id="challenger_name_level">
-				Challenger (85)
 			</h2>
 			<img id="challenger_img" src="http://support.radialpoint.com/client_images/Radialpoint/GameImages/Agent1001.png">
 			
@@ -254,7 +282,6 @@ function battle() {
 		</div>
 		<div id="defender_ui">
 			<h2 id="defender_name_level">
-				Defender (87)
 			</h2>
 			<img id="defender_img" src="http://support.radialpoint.com/client_images/Radialpoint/GameImages/Agent2002.png">
 
