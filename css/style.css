@@ -80,22 +80,21 @@ td
 
 
 /* Table classes */
-table
+.stats_table
 {
 	color:rgb(197, 219, 78);
 	margin: 30px auto;
-	background-color: rgba(0,0,0,0.6);
-
+	border-collapse:collapse;
 }
 
 .table_header_row
 {
-	bacground-color: black;
+	background-color: black;
 }
 
 .table_odd_row
 {
-
+	background-color: rgba(0,0,0,0.6);
 }
 
 .table_even_row
