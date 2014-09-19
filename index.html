@@ -7,9 +7,12 @@
 <script type="text/javascript">
 
 //CONSTANTS
+var total_health_challenger;
+var total_health_defender;
 
           /* grab the JSON for battle processing*/
-var jsontest = '{"results": {"type": "flawless victory","challenger_xp": 100,"challenger_coins": 5,"defender_xp": 100,"defender_coins": 5,"results": [{"attacker": "challenger", "hit": 20, "health": 80, "message": ""},{"attacker": "defender", "hit": 15, "health": 85, "message": ""},{"attacker": "challenger", "hit": 10, "health": 70, "message": ""},{"attacker": "defender", "hit": 30, "health": 55, "message": "Critical hit"},{"attacker": "challenger", "hit": 0, "health": 70, "message": "Miss"},{"attacker": "defender", "hit": 10, "health": 45, "message": ""},{"attacker": "challenger", "hit": 30, "health": 40, "message": "Critical hit"},{"attacker": "defender", "hit": 0, "health": 45, "message": "Miss"},{"attacker": "challenger", "hit": 20, "health": 20, "message": ""},{"attacker": "defender", "hit": 30, "health": 15, "message": "Critical hit"},{"attacker": "challenger", "hit": 20, "health": 0, "message": ""},{"attacker": "defender", "hit": 15, "health": 0, "message": ""}]}}';
+var jsontest = '{"challenger":{"health":146,"id": 937},"defender":{"health":140,"id": 938},"results": {"type": "flawless victory","challenger_xp": 100,"challenger_coins": 5,"defender_xp": 100,"defender_coins": 5,"results": [{"attacker": "challenger", "hit": 20, "health": 80, "message": ""},{"attacker": "defender", "hit": 15, "health": 85, "message": ""},{"attacker": "challenger", "hit": 10, "health": 70, "message": ""},{"attacker": "defender", "hit": 30, "health": 55, "message": "Critical hit"},{"attacker": "challenger", "hit": 0, "health": 70, "message": "Miss"},{"attacker": "defender", "hit": 10, "health": 45, "message": ""},{"attacker": "challenger", "hit": 30, "health": 40, "message": "Critical hit"},{"attacker": "defender", "hit": 0, "health": 45, "message": "Miss"},{"attacker": "challenger", "hit": 20, "health": 20, "message": ""},{"attacker": "defender", "hit": 30, "health": 15, "message": "Critical hit"},{"attacker": "challenger", "hit": 20, "health": 0, "message": ""}]},"winner_id": 937}';
+
 
 function battle() {
       console.log("Reading JSON");
@@ -28,14 +31,31 @@ function battle() {
           .always(function() {
             console.log( "complete" );
           });*/
-console.log(jsontest);
+	console.log(jsontest);
       var obj = $.parseJSON(json);
+      //set total health
+      total_health_challenger = obj.challenger.health;
+      total_health_defender = obj.defender.health;
       console.log(obj);
       battleProc(obj);
     }
 
     function call_setTimeout(iter,result) {
     	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health, result[iter].message)})(iter,result)},iter*1000); 
+    }
+
+    function get_agent_id() {
+    	var agent, hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	        hash = hashes[i].split('=');
+	        if(hash[0] == "AgentId")
+	        {
+	        	return hash[1]
+	        }
+	    }
+	    return "Wrong url...";
     }
 
     function battleProc (jsonArray) {
@@ -48,8 +68,22 @@ console.log(jsontest);
           call_setTimeout(iter,result);
           iter++;
        }
-       //endAnimation();
+       endAnimation(jsonArray);
     }
+
+    function endAnimation(jsonArray) {
+    	console.log("endAnimation()... " + jsonArray);
+    	agent = get_agent_id();
+    	if(agent == jsonArray["winner_id"]) {
+    		$("win_lose_flag").html("YOU WIN!");
+    	}
+    	else {
+    		$("win_lose_flag").html("YOU LOSE!");
+    	}
+    	
+    }
+
+
     
     function battleAnimation(attacker,hit,health,message){
       if(attacker=='challenger'){
@@ -78,6 +112,7 @@ console.log(jsontest);
     function healthAnimation(attacker,hit,health) {
     	console.log("gtfo1");
     	if(attacker=='challenger') {
+    		var remaining_health_percent = ((health/total_health_defender) * 100);
     		//attack number fade out
     		$("#hidden_attack_number_c").html(hit);
     		$("#hidden_attack_number_c").delay(200).animate({
@@ -86,12 +121,17 @@ console.log(jsontest);
     		},1000,"linear", function() {$("#hidden_attack_number_c").html("").css({"top":"300px","opacity":"1.0"})});
 
     		//health bar
-    		$("#defender_hit_points").delay(400).animate({
-    			opacity:0,
-    			top: "-=100px"
-    		},700,"linear", function() {$("#defender_hit_points").html("").css({"top":"300px","opacity":"1.0"})});
+    		$("#defender_health").delay(200).animate({
+    			width:remaining_health_percent.toString() + "%"
+    		},700,"linear");
+
+    		//BUGGED
+    		if(remaining_health_percent < 50) {
+    			$("defender_health").delay(100).css("background-color","yellow");
+    		}
     	}
     	else {
+    		var remaining_health_percent = ((health/total_health_challenger)*100);
     		//attack number fade out
     		$("#hidden_attack_number_d").html(hit);
     		$("#hidden_attack_number_d").delay(200).animate({
@@ -100,10 +140,9 @@ console.log(jsontest);
     		},1000,"linear", function() {$("#hidden_attack_number_d").html("").css({"top":"300px","opacity":"1.0"})});
 
     		//health bar
-    		$("#challenger_hit_points").delay(400).animate({
-    			opacity:0,
-    			top: "-=100px"
-    		},700,"linear", function() {$("#challenger_hit_points").html("").css({"top":"300px","opacity":"1.0"})});
+    		$("#challenger_health").delay(200).animate({
+    			width:remaining_health_percent + "%"
+    		},700,"linear");
     	}
     }
 
@@ -172,6 +211,10 @@ console.log(jsontest);
 	<!--main-->
 	<div id="main">
 		<!-- TOP PART -->
+
+		<!-- Winner/loser flag -->
+		<div id="win_lose_flag">
+		</div>
 
 		<!-- hidden attack number div -->
 		<div id="hidden_attack_number_c">
