@@ -16,26 +16,17 @@ var jsontest = '{"challenger":{"agent_name":null,"avatar":"http:\/\/support.radi
 
 function battle() {
       console.log("Reading JSON");
-
-      /*
-      var json = $.getJSON( "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937", function() {
-          console.log( "success" );
-
-        })
-          .done(function() {
-            console.log( "second success" );
-          })
-          .fail(function() {
-            console.log( "error" );
-          })
-          .always(function() {
-            console.log( "complete" );
-
-          });
-	console.log(jsontest);
-	)*/
-	json = jsontest;
-      var obj = $.parseJSON(json);
+     /* var json = $.ajax({
+                                                url: "http://10.0.55.23/HiWired.App.Web.Tech/BattleResult?BattleId=1&AgentId=937",
+                                                type: 'get',
+                                                dataType: 'json',
+                                                data: {},
+                                                success: function (battle) {
+                                                  battleProc(battle);
+                                                }
+                                                //error: error
+                                });*/
+      var obj = $.parseJSON(jsontest);
 
       //set challenger and defender name
       $("#challenger_name_level").html(obj.challenger.gamer_name + " (" + obj.challenger.level + ")")
@@ -45,12 +36,14 @@ function battle() {
       total_health_challenger = obj.challenger.health;
       total_health_defender = obj.defender.health;
 
+
       console.log(obj);
       battleProc(obj);
     }
 
     function call_setTimeout(iter,result) {
     	setTimeout(function() {(function(iter,result) {battleAnimation(result[iter].attacker, result[iter].hit, result[iter].health_remaining, result[iter].message)})(iter,result)},iter*1000 + 500); 
+
     }
 
     function get_agent_id() {
@@ -222,7 +215,7 @@ function battle() {
 	<!--main-->
 	<div id="main">
 		<!-- TOP PART -->
-
+		<!--<audio src="battle.wav" controls="controls"></audio>-->
 		<!-- Winner/loser flag -->
 		<div id="win_lose_flag">
 		</div>
