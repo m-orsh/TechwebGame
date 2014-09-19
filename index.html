@@ -82,7 +82,10 @@ console.log(jsontest);
     		},700,"linear", function() {$("#hidden_attack_number").html("").css({"top":"300px","opacity":"1.0"})});
 
     		//health bar
-    		$("#defender_health").
+    		$("#defender_hit_points").delay(400).animate({
+    			opacity:0,
+    			top: "-=100px"
+    		},700,"linear", function() {$("#defender_hit_points").html("").css({"top":"300px","opacity":"1.0"})});
     	}
     	else {
 
