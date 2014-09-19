@@ -1,62 +1,62 @@
 {
-                challenger: {
-                                name: '',
-                                img: '',
-                                stats: {
-                                                level: 1,
-                                                xp: 100,
-                                                coins: 25
+                "challenger":{
+                                "name": "",
+                                "img": "",
+                                "stats": {
+                                                "level": 1,
+                                                "xp": 100,
+                                                "coins": 25
                                 },
-                                metrics: [
+                                "metrics": [
                                                 {
-                                                                group: '',
-                                                                real_name: '',
-                                                                attribute_name: '',
-                                                                real_value: 1,
-                                                                attribute_value: 3
+                                                                "group": "",
+                                                                "real_name": "",
+                                                                "attribute_name": "",
+                                                                "real_value": 1,
+                                                                "attribute_value": 3
  
                                                 }
                                 ]
  
                 },
-                defender: {
-                                name: '',
-                                img: '',
-                                stats: {
-                                                level: 1,
-                                                xp: 100,
-                                                coins: 25
+                "defender": {
+                                "name": "",
+                                "img": "",
+                                "stats": {
+                                                "level": 1,
+                                                "xp": 100,
+                                                "coins": 25
                                 },
-                                metrics: [
+                                "metrics": [
                                                 {
-                                                                group: '',
-                                                                real_name: '',
-                                                                attribute_name: '',
-                                                                real_value: 1,
-                                                                attribute_value: 3
+                                                                "group": "",
+                                                                "real_name": "",
+                                                                "attribute_name": "",
+                                                                "real_value": 1,
+                                                                "attribute_value": 3
  
                                                 }
                                 ]
                 },
-                results: {
-                                type: 'flawless victory',
-                                challenger_xp: 100,
-                                challenger_coins: 5,
-                                defender_xp: 100,
-                                defender_coins: 5,
-                                results: [
-                                                {attacker: 'challenger', hit: 20, health: 80, message: ''},
-                                                {attacker: 'defender', hit: 15, health: 85, message: ''},
-                                                {attacker: 'challenger', hit: 10, health: 70, message: ''},
-                                                {attacker: 'defender', hit: 30, health: 55, message: 'Critical hit'},
-                                                {attacker: 'challenger', hit: 0, health: 70, message: 'Miss'},
-                                                {attacker: 'defender', hit: 10, health: 45, message: ''},
-                                                {attacker: 'challenger', hit: 30, health: 40, message: 'Critical hit'},
-                                                {attacker: 'defender', hit: 0, health: 45, message: 'Miss'},
-                                                {attacker: 'challenger', hit: 20, health: 20, message: ''},
-                                                {attacker: 'defender', hit: 30, health: 15, message: 'Critical hit'},
-                                                {attacker: 'challenger', hit: 20, health: 0, message: ''},
-                                                {attacker: 'defender', hit: 15, health: 0, message: ''}
+               "results": {
+                                "type": "flawless victory",
+                                "challenger_xp": 100,
+                                "challenger_coins": 5,
+                                "defender_xp": 100,
+                                "defender_coins": 5,
+                                "results": [
+                                                {"attacker": "challenger", "hit": 20, "health": 80, "message": ""},
+                                                {"attacker": "defender", "hit": 15, "health": 85, "message": ""},
+                                                {"attacker": "challenger", "hit": 10, "health": 70, "message": ""},
+                                                {"attacker": "defender", "hit": 30, "health": 55, "message": "Critical hit"},
+                                                {"attacker": "challenger", "hit": 0, "health": 70, "message": "Miss"},
+                                                {"attacker": "defender", "hit": 10, "health": 45, "message": ""},
+                                                {"attacker": "challenger", "hit": 30, "health": 40, "message": "Critical hit"},
+                                                {"attacker": "defender", "hit": 0, "health": 45, "message": "Miss"},
+                                                {"attacker": "challenger", "hit": 20, "health": 20, "message": ""},
+                                                {"attacker": "defender", "hit": 30, "health": 15, "message": "Critical hit"},
+                                                {"attacker": "challenger", "hit": 20, "health": 0, "message": ""},
+                                                {"attacker": "defender", "hit": 15, "health": 0, "message": ""}
                                                
                                 ]
  
